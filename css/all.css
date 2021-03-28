@@ -596,4 +596,26 @@ body {
   padding: 5px 10px;
   cursor: pointer;
 }
+
+.delSingleOrder-Btn:hover {
+  opacity: 0.8;
+}
+
+.status-unDone {
+  background-color: #747474;
+  color: #FFFFFF;
+}
+
+.status-unDone:hover {
+  background-color: #000000;
+}
+
+.status-done {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.status-done:hover {
+  background-color: #747474;
+}
 /*# sourceMappingURL=all.css.map */

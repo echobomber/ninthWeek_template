@@ -23,4 +23,21 @@
     border: 0;
     padding: 5px 10px;
     cursor: pointer;
+    &:hover{
+        opacity: 0.8;
+    }
+}
+.status-unDone{
+    background-color: #747474;
+    color: #FFFFFF;
+    &:hover{
+        background-color: #000000;
+    }
+}
+.status-done{
+    background-color: #000000;
+    color: #FFFFFF;
+    &:hover{
+        background-color: #747474;
+    }
 }
