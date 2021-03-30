@@ -123,50 +123,52 @@ function delAllCart(e) {
 function renderCart() {
     let url = `${baseUrl}/api/livejs/v1/customer/${api_path}/carts`;
     let cartTable = document.querySelector('.shoppingCart-table');
-    let str = `
-        <caption class="section-title">我的購物車</caption>
-        <tr>
-            <th width="40%">品項</th>
-            <th width="15%">單價</th>
-            <th width="15%">數量</th>
-            <th width="15%">金額</th>
-            <th width="15%"></th>
-        </tr>`;
+    let str = `<caption class="section-title">我的購物車</caption>`;
     axios.get(url)
         .then((res) => {
-            console.log(2, res);
+            // console.log(2, res);
             let data = res.data.carts;
-            data.forEach((item, i) => {
+            if(data[0]){
                 str += `
-                <tr>
-                    <td>
-                        <div class="cardItem-title">
-                            <img src="${item.product.images}" alt="">
-                            <p>${item.product.title}</p>
-                        </div>
-                    </td>
-                    <td>NT$${item.product.price}</td>
-                    <td>${item.quantity}</td>
-                    <td>NT$${item.product.price * item.quantity}</td>
-                    <td class="discardBtn">
-                        <a href="#" class="material-icons">
-                            clear
-                        </a>
-                    </td>
-                </tr>`;
-            })
-            str += `
-                <tr>
-                    <td>
-                        <a href="#" class="discardAllBtn">刪除所有品項</a>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <p>總金額</p>
-                    </td>
-                    <td>NT$13,980</td>
-                </tr>`;
+                    <tr>
+                        <th width="40%">品項</th>
+                        <th width="15%">單價</th>
+                        <th width="15%">數量</th>
+                        <th width="15%">金額</th>
+                        <th width="15%"></th>
+                    </tr>`;
+                data.forEach((item, i) => {
+                    str += `
+                    <tr>
+                        <td>
+                            <div class="cardItem-title">
+                                <img src="${item.product.images}" alt="">
+                                <p>${item.product.title}</p>
+                            </div>
+                        </td>
+                        <td>NT$${item.product.price}</td>
+                        <td>${item.quantity}</td>
+                        <td>NT$${item.product.price * item.quantity}</td>
+                        <td class="discardBtn">
+                            <a href="#" class="material-icons">
+                                clear
+                            </a>
+                        </td>
+                    </tr>`;
+                })
+                str += `
+                    <tr>
+                        <td>
+                            <a href="#" class="discardAllBtn">刪除所有品項</a>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <p>總金額</p>
+                        </td>
+                        <td>NT$13,980</td>
+                    </tr>`;
+            }
             cartTable.innerHTML = str;
             data.forEach((item, i) => {
                 document.querySelectorAll('.discardBtn a')[i].addEventListener('click', delSingleCart(item));
@@ -239,10 +241,126 @@ init();
 productSelect.addEventListener('change', productFilter);
 keyWordSearch.addEventListener('click', keywordFilter);
 
+// validate.js
+
+;(function() {
+    let constraints = {
+        "姓名": {
+            presence: {
+                message: "是必填的欄位",
+            },
+        },
+        "電話": {
+            presence: {
+                message: "是必填的欄位"
+            },
+        },
+        "Email": {
+            presence: {
+                message: "是必填的欄位",
+            },
+        },
+        "寄送地址": {
+            presence: {
+                message: "是必填的欄位"
+            },
+        },
+        "交易方式": {
+            presence: {
+                message: "是必填的欄位", 
+            },
+        },
+    };
+    let form = document.querySelector('#orderInfo');
+    let messages = document.querySelectorAll('[data-message]');
+    let inputs = document.querySelectorAll('.orderInfo-input input, .orderInfo-input select');
+    form.addEventListener('submit', formCheck);
+
+    inputs.forEach((item) => {
+        item.addEventListener("change", function (e) {
+            e.preventDefault();
+            let targetName = item.name;
+            // console.log(targetName);
+            let errors = validate(form, constraints);
+            let str = `[data-message="${targetName}"]`;
+            if (errors) {
+                // 取得要輸出錯誤訊息的 p 標籤
+                document.querySelector(str).textContent = errors[targetName];
+            } else {
+                document.querySelector(str).textContent = "";
+            }
+        });
+    })
+    function formCheck(e) {
+        e.preventDefault();
+        let errors = validate(form, constraints);
+        if (errors) {
+            console.log(errors);
+            showErrors(errors); // 顯示錯誤訊息，errors 是物件形式
+        } else {
+            console.log("驗證成功");
+            let name = document.querySelector("#customerName").value;
+            let tel = document.querySelector("#customerPhone").value;
+            let email = document.querySelector("#customerEmail").value;
+            let address = document.querySelector("#customerAddress").value;
+            let payment = document.querySelector("#tradeWay").value;
+
+            let url = `${baseUrl}/api/livejs/v1/customer/${api_path}/orders`;
+            let data = {
+                "data": {
+                    "user": {
+                        "name": name,
+                        "tel": tel,
+                        "email": email,
+                        "address": address,
+                        "payment": payment
+                     }
+                }
+            }
+            axios.post(url, {...data})
+                .then((res) => {
+                    console.log(res);
+                    renderCart();
+                    location.href = "/pages/order.html";
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+    }
+    function showErrors(errors) {
+        messages.forEach((item) => {
+            item.textContent = "";
+            item.textContent = errors[item.dataset.message];
+        })
+    }
+})();
+// order
+function getOrder() {
+    let vm = this;
+    // console.log(this);
+    let url = `${baseUrl}/api/livejs/v1/admin/${api_path}/orders`;
+    let data = {};
+    console.log("getOrder")
+    axios.get(url, 
+        {
+            'headers': {
+                'Authorization': 'PBZzz6dBY3Q67V6SPh4xTkfc3Oh1'
+            }
+        })
+        .then((res) => {
+            data = res.data.orders;
+            console.log(data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+}
+getOrder();
+
 // C3.js
 let chart = c3.generate({
     bindto: '#chart', // HTML 元素綁定
-    
     data: {
         type: "pie",
         columns: [
