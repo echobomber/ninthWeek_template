@@ -86,12 +86,15 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .topBar a {
@@ -111,20 +114,84 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: #FFFFFF;
+}
+
+.topBar-menu.openMenu {
+  max-height: 300px;
 }
 
 .topBar-menu a {
   padding: 36px 24px;
-  font-size: 20px;
+  font-size: 1.25rem;
+  background-color: #FFFFFF;
+}
+
+.topBar-menu a:hover {
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 .topBar-menu li:last-child a {
   padding-right: 0;
 }
 
+@media (max-width: 767px) {
+  .topBar-menu {
+    position: absolute;
+    top: 61px;
+    width: 100%;
+    z-index: 10;
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+  }
+  .topBar-menu li {
+    width: 100%;
+  }
+  .topBar-menu a {
+    text-align: center;
+    padding: 15px;
+    font-size: 1rem;
+  }
+  .topBar-menu a:hover {
+    background-color: #6A33F8;
+    color: #FFFFFF;
+  }
+  .topBar-menu li:last-child a {
+    padding: 15px;
+  }
+}
+
+.menuToggle {
+  display: none;
+  cursor: pointer;
+}
+
+.menuToggle:hover {
+  color: #6A33FF;
+}
+
+@media (max-width: 767px) {
+  .menuToggle {
+    display: block;
+    font-size: 2rem;
+    padding: 15px;
+  }
+}
+
 .logo {
   padding: 36px 0;
   font-size: 1.5rem;
+}
+
+@media (max-width: 767px) {
+  .logo {
+    padding: 15px;
+  }
 }
 
 .banner {
@@ -179,6 +246,18 @@ body {
   padding: 50px 0 60px 0;
 }
 
+@media (max-width: 767px) {
+  .furniture-compare {
+    padding: 50px 15px 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .overflowWrap {
+    overflow-x: scroll;
+  }
+}
+
 .compare-table {
   width: 65%;
   margin: 0 auto;
@@ -208,17 +287,38 @@ body {
           transform: scale(1.5);
 }
 
+@media (max-width: 767px) {
+  .compare-table {
+    width: 600px;
+  }
+  .compare-table th, .compare-table td {
+    padding: 10px 0;
+  }
+  .compare-table th {
+    font-size: 1rem;
+  }
+  .compare-table tr td:first-child {
+    font-size: 1rem;
+  }
+}
+
 .text-muted {
   color: #797979;
 }
 
 .recommendation {
   background-color: #301E5F;
-  padding: 60px;
+  padding: 60px 0;
 }
 
 .recommendation h3 {
   color: #FFFFFF;
+}
+
+@media (max-width: 767px) {
+  .recommendation {
+    padding: 60px 15px;
+  }
 }
 
 .recommendation-wall {
@@ -290,6 +390,12 @@ body {
   padding: 30px 0;
 }
 
+@media (max-width: 767px) {
+  .transport li {
+    margin-bottom: 20px;
+  }
+}
+
 .transport-intro {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -302,6 +408,15 @@ body {
           justify-content: space-between;
   max-width: 700px;
   margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .transport-intro {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .transport-card {
@@ -346,6 +461,13 @@ body {
   font-weight: bold;
 }
 
+@media (max-width: 767px) {
+  .transport-card .cardImg {
+    width: 150px;
+    height: 150px;
+  }
+}
+
 .transport-arrow {
   border: 10px solid #000000;
   border-top: 10px solid transparent;
@@ -358,8 +480,21 @@ body {
   top: 49px;
 }
 
+@media (max-width: 767px) {
+  .transport-arrow {
+    top: 0;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    border: 10px solid #000000;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+}
+
 .productDisplay {
-  padding: 30px 0;
+  padding: 30px 15px;
 }
 
 .productSelect {
@@ -381,13 +516,14 @@ body {
 
 .productCard {
   position: relative;
-  margin-right: 20px;
-  max-width: 255px;
+  margin-right: 2%;
+  width: 23%;
   margin-bottom: 30px;
 }
 
 .productCard img {
   min-height: 300px;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -396,7 +532,8 @@ body {
   display: block;
   background-color: #000000;
   color: #ffffff;
-  padding: 10px 77px;
+  padding: 10px 0;
+  text-align: center;
   border: none;
   margin-bottom: 8px;
   text-decoration: none;
@@ -408,6 +545,18 @@ body {
 
 .productCard a, .productCard h3 {
   font-size: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .productCard {
+    width: 48%;
+  }
+}
+
+@media (max-width: 540px) {
+  .productCard {
+    width: 100%;
+  }
 }
 
 .productType {
@@ -434,7 +583,6 @@ body {
 }
 
 .shoppingCart-table {
-  width: 50%;
   margin: 0 auto;
   border-collapse: collapse;
   font-size: 1.25rem;
@@ -455,6 +603,12 @@ body {
 
 .shoppingCart-table tr:first-child, .shoppingCart-table tr:last-child {
   border-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .shoppingCart-table {
+    width: 700px;
+  }
 }
 
 .cardItem-title {
@@ -512,19 +666,13 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.orderInfo form > div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .orderInfo label {
@@ -569,6 +717,19 @@ body {
 
 .orderInfo-input p {
   color: #C72424;
+}
+
+@media (max-width: 767px) {
+  .orderInfo-input {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    margin-bottom: 10px;
+  }
 }
 
 .orderPage-list {

@@ -36,6 +36,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Attach the handler
     ele.addEventListener('mousedown', mouseDownHandler);
 });
+// menu 切換
+let menuOpenBtn = document.querySelector('.menuToggle');
+let linkBtn = document.querySelectorAll('.topBar-menu a');
+let menu = document.querySelector('.topBar-menu');
+menuOpenBtn.addEventListener('click', menuToggle);
+
+linkBtn.forEach((item) => {
+    item.addEventListener('click', closeMenu);
+})
+
+function menuToggle() {
+    if(menu.classList.contains('openMenu')) {
+        menu.classList.remove('openMenu');
+    }else {
+        menu.classList.add('openMenu');
+    }
+}
+function closeMenu() {
+    menu.classList.remove('openMenu');
+}
+
 
 // 以下開始撰寫 JS 程式碼
 let productWrap = document.querySelector('.productWrap');
@@ -123,7 +144,7 @@ function delAllCart(e) {
 function renderCart() {
     let url = `${baseUrl}/api/livejs/v1/customer/${api_path}/carts`;
     let cartTable = document.querySelector('.shoppingCart-table');
-    let str = `<caption class="section-title">我的購物車</caption>`;
+    let str = '';
     axios.get(url)
         .then((res) => {
             // console.log(2, res);
@@ -239,7 +260,7 @@ function keywordFilter() {
 init();
 
 productSelect.addEventListener('change', productFilter);
-keyWordSearch.addEventListener('click', keywordFilter);
+// keyWordSearch.addEventListener('click', keywordFilter);
 
 // validate.js
 

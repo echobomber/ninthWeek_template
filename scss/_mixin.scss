@@ -1,15 +1,15 @@
 @mixin rwd($width){
-    @media (min-width: $width){
+    @media (max-width: $width){
         @content;
     }
 }
 @mixin ipad{
-    @media (min-width: 768px){
+    @media (max-width: 768px){
         @content;
     }
 }
 @mixin mobile{
-    @media (min-width: 767px){
+    @media (max-width: 767px){
         @content;
     }
 }
