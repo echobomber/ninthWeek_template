@@ -1,19 +1,25 @@
 .orderPage-list{
-    padding-top: $spacer-md;
-    padding-bottom: $spacer-md;
+    padding: $spacer-md 10px;
     display: flex;
     flex-direction: column;
     .discardAllBtn{
         align-self: flex-end;
         margin-bottom: 12px;
     }
+    // @include rwd(1110px) {
+    //     padding: $spacer-md 0;
+    // }
 }
 .orderPage-table{
     border: 1px solid #000000;
+    width: 100%;
     th, td{
         padding: 10px;
         text-align: left;
         border: 1px solid #000000;
+    }
+    @include rwd(1110px) {
+        width: 1100px;
     }
 }
 .delSingleOrder-Btn{
@@ -28,10 +34,21 @@
     }
 }
 .status-unDone{
-    background-color: #747474;
-    color: #FFFFFF;
-    &:hover{
-        background-color: #000000;
+    position: relative;
+    a{
+        position: absolute;
+        padding: 10px;
+        top:0;
+        bottom:0;
+        right:0;
+        left:0;
+        display: block;
+        text-decoration: none;
+        background-color: #747474;
+        color: #FFFFFF;
+        &:hover{
+            background-color: #000000;
+        }
     }
 }
 .status-done{
@@ -40,4 +57,7 @@
     &:hover{
         background-color: #747474;
     }
+}
+.orderTableWrap{
+    overflow-x: scroll;
 }

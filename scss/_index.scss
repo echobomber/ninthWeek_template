@@ -263,6 +263,27 @@ body{
     @include mobile() {
         flex-direction: column;
     }
+    li:nth-child(1), li:nth-child(2),li:nth-child(3){
+        position: relative;
+        &::after{
+            content: "";
+            position: absolute;
+            top: 49px;
+            right: -55px;
+            border: 10px solid #000000;
+            border-top: 10px solid transparent;
+            border-right: 10px solid transparent; 
+            border-bottom: 10px solid transparent;
+            @include mobile() {
+                position: static;
+                margin-top: 25px;
+                border: 10px solid #000000;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent; 
+                border-bottom: 10px solid transparent; 
+            }
+        }
+    }
 }
 .transport-card{
     display: flex;
@@ -369,7 +390,7 @@ body{
     padding: 8px 24px;
 }
 .originPrice{
-    text-decoration: line-through;
+    // text-decoration: line-through;
     font-size: 1.25rem;
 }
 .nowPrice{
@@ -439,15 +460,41 @@ body{
 }
 .orderInfo{
     padding: $spacer-md 0;
-    form{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    &-form{
+        padding: 0 15px;
     }
-    label{
+    &-formGroup{
+        max-width: 365px;
+        margin: 0 auto 15px;
+    }
+    &-label{
+        display: block;
         margin-bottom: 6px;
     }
-    input[type="submit"]{
+    &-input{
+        width: 100%;
+        min-height: 38px;
+        border: 1px solid #CED4DA;
+        border-radius: 5px;
+        text-indent: 1rem;
+        margin-right: 10px;
+    }  
+    &-inputWrap{
+        position: relative;
+    }
+    &-message {
+        position: absolute;
+        white-space: nowrap;
+        left: 103%;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #C72424;
+        @include mobile() {
+            position: static;
+            transform: translateY(0);
+        }
+    }
+    &-btn {
         display: block;
         min-width: 255px;
         min-height: 48px;
@@ -461,26 +508,5 @@ body{
         &:hover{
             background-color: #301E5F;
         }
-    }
-}
-.orderInfo-input{
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    input, select{
-        min-width: 350px;
-        min-height: 38px;
-        border: 1px solid #CED4DA;
-        border-radius: 5px;
-        text-indent: 1rem;
-        margin-right: 10px;
-    }
-    p{
-        color: #C72424;
-    }
-    @include mobile() {
-        flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 10px;
     }
 }

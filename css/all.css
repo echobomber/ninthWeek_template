@@ -438,6 +438,32 @@ body {
   }
 }
 
+.transport-intro li:nth-child(1), .transport-intro li:nth-child(2), .transport-intro li:nth-child(3) {
+  position: relative;
+}
+
+.transport-intro li:nth-child(1)::after, .transport-intro li:nth-child(2)::after, .transport-intro li:nth-child(3)::after {
+  content: "";
+  position: absolute;
+  top: 49px;
+  right: -55px;
+  border: 10px solid #000000;
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+@media (max-width: 767px) {
+  .transport-intro li:nth-child(1)::after, .transport-intro li:nth-child(2)::after, .transport-intro li:nth-child(3)::after {
+    position: static;
+    margin-top: 25px;
+    border: 10px solid #000000;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+}
+
 .transport-card {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -588,7 +614,6 @@ body {
 }
 
 .originPrice {
-  text-decoration: line-through;
   font-size: 1.25rem;
 }
 
@@ -681,24 +706,52 @@ body {
   padding: 60px 0;
 }
 
-.orderInfo form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.orderInfo-form {
+  padding: 0 15px;
 }
 
-.orderInfo label {
+.orderInfo-formGroup {
+  max-width: 365px;
+  margin: 0 auto 15px;
+}
+
+.orderInfo-label {
+  display: block;
   margin-bottom: 6px;
 }
 
-.orderInfo input[type="submit"] {
+.orderInfo-input {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid #CED4DA;
+  border-radius: 5px;
+  text-indent: 1rem;
+  margin-right: 10px;
+}
+
+.orderInfo-inputWrap {
+  position: relative;
+}
+
+.orderInfo-message {
+  position: absolute;
+  white-space: nowrap;
+  left: 103%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  color: #C72424;
+}
+
+@media (max-width: 767px) {
+  .orderInfo-message {
+    position: static;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+.orderInfo-btn {
   display: block;
   min-width: 255px;
   min-height: 48px;
@@ -711,49 +764,12 @@ body {
   border-radius: 5px;
 }
 
-.orderInfo input[type="submit"]:hover {
+.orderInfo-btn:hover {
   background-color: #301E5F;
 }
 
-.orderInfo-input {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: 20px;
-}
-
-.orderInfo-input input, .orderInfo-input select {
-  min-width: 350px;
-  min-height: 38px;
-  border: 1px solid #CED4DA;
-  border-radius: 5px;
-  text-indent: 1rem;
-  margin-right: 10px;
-}
-
-.orderInfo-input p {
-  color: #C72424;
-}
-
-@media (max-width: 767px) {
-  .orderInfo-input {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-    margin-bottom: 10px;
-  }
-}
-
 .orderPage-list {
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding: 60px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -771,12 +787,19 @@ body {
 
 .orderPage-table {
   border: 1px solid #000000;
+  width: 100%;
 }
 
 .orderPage-table th, .orderPage-table td {
   padding: 10px;
   text-align: left;
   border: 1px solid #000000;
+}
+
+@media (max-width: 1110px) {
+  .orderPage-table {
+    width: 1100px;
+  }
 }
 
 .delSingleOrder-Btn {
@@ -793,11 +816,23 @@ body {
 }
 
 .status-unDone {
+  position: relative;
+}
+
+.status-unDone a {
+  position: absolute;
+  padding: 10px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: block;
+  text-decoration: none;
   background-color: #747474;
   color: #FFFFFF;
 }
 
-.status-unDone:hover {
+.status-unDone a:hover {
   background-color: #000000;
 }
 
@@ -808,5 +843,9 @@ body {
 
 .status-done:hover {
   background-color: #747474;
+}
+
+.orderTableWrap {
+  overflow-x: scroll;
 }
 /*# sourceMappingURL=all.css.map */
