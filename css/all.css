@@ -824,5 +824,13 @@ body {
 
 .orderTableWrap {
   overflow-x: scroll;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.orderTableWrap::-webkit-scrollbar {
+  display: none;
 }
 /*# sourceMappingURL=all.css.map */
