@@ -221,16 +221,16 @@ function renderProduct(targetProduct) {
         document.querySelectorAll('#addCardBtn')[i].addEventListener('click', addCart(item));
     })
     // 
-    str = `
-        <option value="" disabled selected hidden>全部、找新品、限時折扣</option>
-        <option value="全部">全部</option>
-    `;
-    categoryName.forEach((item) => {
-        str += `
-            <option value="${item}">${item}</option>
-        `;
-    })
-    productSelect.innerHTML = str;
+    // str = `
+    //     <option value="" disabled selected hidden>全部、找新品、限時折扣</option>
+    //     <option value="全部">全部</option>
+    // `;
+    // categoryName.forEach((item) => {
+    //     str += `
+    //         <option value="${item}">${item}</option>
+    //     `;
+    // })
+    // productSelect.innerHTML = str;
 }
 function productFilter(e) {
     e.preventDefault();
