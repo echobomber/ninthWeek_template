@@ -70,6 +70,7 @@ img {
 
 body {
   font-family: 'Noto Sans', sans-serif;
+  font-weight: bold;
 }
 
 .wrap {
@@ -95,6 +96,12 @@ body {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+@media (max-width: 1110px) {
+  .topBar .wrap {
+    padding: 0 15px;
+  }
 }
 
 .topBar a {
@@ -142,6 +149,8 @@ body {
   .topBar-menu {
     position: absolute;
     top: 61px;
+    left: 0;
+    right: 0;
     width: 100%;
     z-index: 10;
     max-height: 0;
@@ -289,7 +298,7 @@ body {
 
 @media (max-width: 767px) {
   .compare-table {
-    width: 600px;
+    width: 500px;
   }
   .compare-table th, .compare-table td {
     padding: 10px 0;
@@ -362,7 +371,17 @@ body {
 }
 
 .recommend-content {
-  padding: 12px 16px;
+  padding-left: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .recommend-img {
@@ -382,7 +401,7 @@ body {
 }
 
 .recommend-text {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #6A33F8;
 }
 
