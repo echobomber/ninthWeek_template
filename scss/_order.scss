@@ -1,25 +1,24 @@
-.orderPage-list{
-    padding: $spacer-md 10px;
-    display: flex;
-    flex-direction: column;
-    .discardAllBtn{
-        align-self: flex-end;
-        margin-bottom: 12px;
+.orderPage {
+    &-list{
+        padding: $spacer-md 10px;
+        display: flex;
+        flex-direction: column;
+        .discardAllBtn{
+            align-self: flex-end;
+            margin-bottom: 12px;
+        }
     }
-    // @include rwd(1110px) {
-    //     padding: $spacer-md 0;
-    // }
-}
-.orderPage-table{
-    border: 1px solid #000000;
-    width: 100%;
-    th, td{
-        padding: 10px;
-        text-align: left;
+    &-table{
         border: 1px solid #000000;
-    }
-    @include rwd(1110px) {
-        width: 1100px;
+        width: 100%;
+        th, td{
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #000000;
+        }
+        @include rwd(1110px) {
+            width: 1100px;
+        }
     }
 }
 .delSingleOrder-Btn{
@@ -33,7 +32,7 @@
         opacity: 0.8;
     }
 }
-.status-unDone{
+.orderStatus{
     position: relative;
     a{
         position: absolute;
@@ -44,18 +43,19 @@
         left:0;
         display: block;
         text-decoration: none;
-        background-color: #747474;
         color: #FFFFFF;
+    }
+    &-unDone{
+        background-color: $orderStatus;
         &:hover{
             background-color: #000000;
         }
     }
-}
-.status-done{
-    background-color: #000000;
-    color: #FFFFFF;
-    &:hover{
-        background-color: #747474;
+    &-done{
+        background-color: #000000;
+        &:hover{
+            background-color: $orderStatus;
+        }
     }
 }
 .orderTableWrap{

@@ -132,7 +132,6 @@ body {
 
 .topBar-menu a {
   padding: 36px 24px;
-  font-size: 1.25rem;
   background-color: #FFFFFF;
 }
 
@@ -213,7 +212,7 @@ body {
   margin-bottom: 60px;
 }
 
-.banner h2 {
+.banner-text {
   position: absolute;
   color: #FFFFFF;
   font-size: 2rem;
@@ -238,14 +237,14 @@ body {
   margin-bottom: 60px;
 }
 
-.bedAdvantage img {
+.bedAdvantage-img {
   max-height: 140px;
   -o-object-fit: cover;
      object-fit: cover;
   margin-bottom: 10px;
 }
 
-.bedAdvantage p {
+.bedAdvantage-text {
   text-align: center;
   font-size: 1.25rem;
 }
@@ -513,37 +512,13 @@ body {
   }
 }
 
-.transport-arrow {
-  border: 10px solid #000000;
-  border-top: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  -ms-flex-item-align: start;
-      -ms-grid-row-align: start;
-      align-self: start;
-  position: relative;
-  top: 49px;
-}
-
-@media (max-width: 767px) {
-  .transport-arrow {
-    top: 0;
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
-    border: 10px solid #000000;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-  }
-}
-
 .productDisplay {
   padding: 30px 15px;
 }
 
 .productSelect {
-  border: 1px solid #CED4DA;
+  border: 1px solid #B9B9B9;
+  color: #797979;
   min-height: 38px;
   min-width: 255px;
   border-radius: 5px;
@@ -815,11 +790,11 @@ body {
   opacity: 0.8;
 }
 
-.status-unDone {
+.orderStatus {
   position: relative;
 }
 
-.status-unDone a {
+.orderStatus a {
   position: absolute;
   padding: 10px;
   top: 0;
@@ -828,20 +803,22 @@ body {
   left: 0;
   display: block;
   text-decoration: none;
+  color: #FFFFFF;
+}
+
+.orderStatus-unDone {
   background-color: #747474;
-  color: #FFFFFF;
 }
 
-.status-unDone a:hover {
+.orderStatus-unDone:hover {
   background-color: #000000;
 }
 
-.status-done {
+.orderStatus-done {
   background-color: #000000;
-  color: #FFFFFF;
 }
 
-.status-done:hover {
+.orderStatus-done:hover {
   background-color: #747474;
 }
 
